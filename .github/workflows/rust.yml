@@ -22,15 +22,11 @@ jobs:
           - { os: windows-latest , target: x86_64-pc-windows-msvc           , extension: .exe }
 
     steps:
-      - name: Checkout
+      - name: Checkout private repo
         uses: actions/checkout@v5
-
-      
-      - name: Clone private core
-        run: |
-          git clone https://github.com/Mizuki27631/private-rust-buildtest.git
-        env:
-          GITHUB_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        with:
+          repository: User/private-rust-buildtest
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
 
       - name: Extract crate information
         shell: bash
